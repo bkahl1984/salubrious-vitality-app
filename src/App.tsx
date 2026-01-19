@@ -765,7 +765,12 @@ export default function TriquetraKnotWebsite() {
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <nav className="nav-container">
           <a href="#home" className="logo-container" onClick={(e) => handleNavClick(e, '#home')}>
-            <TriquetraLogo className="logo-img" />
+            <img 
+              src='/salubrious-vitality-app/logo.png'
+              alt='Logo'
+              className='logo'
+              style={{ width: 100, height: 100 }}
+            />
             <span className="logo-text">The Triquetra Knot</span>
           </a>
           <button 
