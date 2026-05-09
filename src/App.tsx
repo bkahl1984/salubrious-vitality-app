@@ -279,9 +279,14 @@ export default function TriquetraKnotWebsite() {
         .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
         @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
         .product-box {
-          aspect-ratio: 1.2;
           display: flex; flex-direction: column;
-          align-items: center; justify-content: center; padding: 2rem;
+          align-items: center; justify-content: flex-start;
+          padding: 1.5rem;
+          text-align: center;
+        }
+        @media (max-width: 639px) {
+          .product-box { padding: 1.25rem; }
+          .product-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
         }
         .product-icon { font-size: 3.5rem; margin-bottom: 1rem; }
         .product-price {
