@@ -75,11 +75,11 @@ export default function TriquetraKnotWebsite() {
         .hamburger-line {
           width: 28px; height: 2px;
           background: #e2d070; border-radius: 4px;
-          transition: all 0.3s; transform-origin: 1px;
+          transition: all 0.3s; transform-origin: center;
         }
-        .hamburger-line.open:nth-child(1) { transform: rotate(45deg); }
+        .hamburger-line.open:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger-line.open:nth-child(2) { opacity: 0; transform: translateX(20px); }
-        .hamburger-line.open:nth-child(3) { transform: rotate(-45deg); }
+        .hamburger-line.open:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         .mobile-nav {
           overflow: hidden;
