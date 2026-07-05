@@ -565,9 +565,9 @@ export default function TriquetraKnotWebsite() {
           <div className="gold-divider"></div>
           <div className="products-grid">
             {[
-              ['📖', 'Peter Crone', 'A collection of 12 professionally recorded guided meditations for various intentions and healing modalities.', '$29.99'],
-              ['📝', 'Black Stuff', 'A beautifully designed journal with prompts and exercises to support your personal growth journey.', '$24.99'],
-              ['🎓', 'Water Filterman', 'Access our comprehensive online courses covering mindfulness, energy work, and holistic wellness practices.', '$149.99'],
+              ['📖', 'Peter Crone', 'Peter Crone has created a promo code for you with 10% off with DAMEHANNAH10'],
+              ['📝', 'Black Stuff', 'Black Stuff, its a gut biome support that is designed to elevate health and wellness through next-level cellular support and detoxification, the power of polyphenol-fulvic compounds for deep detox and nutrient absorption. A key part of our mission to elevate health and wellness through next-level cellular support and detoxification.', 'https://www.black-stuff.com/hannahpope'],
+              ['🎓', 'Water Filterman', 'I use this for filtering our water, we use a whole house system & have a reverse osmosis system fitted under the sink. Clients of mine can get a 15% discount when quoting my name verbally when placing an order: Hannah Pope', 'https://www.waterfilterman.co.uk/'],
             ].map(([icon, title, desc, price]) => (
               <div key={title} className="content-box product-box">
                 <div className="product-icon">{icon}</div>
