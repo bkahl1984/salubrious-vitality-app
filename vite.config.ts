@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/salubrious-vitality-app/",
+  // base: "/salubrious-vitality-app/", // built this way before using cname domain
+  base: "/",
 })
