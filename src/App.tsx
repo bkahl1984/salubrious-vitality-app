@@ -270,14 +270,53 @@ export default function TriquetraKnotWebsite() {
         .services-section { background-color: #f8f7f2; }
         .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
         @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* SERVICES LAYOUT (mirrors bio) */
+        .services-layout {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+          align-items: flex-start;
+        }
+        @media (min-width: 900px) {
+          .services-layout { flex-direction: row; gap: 4rem; align-items: flex-start; }
+          .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .services-photo-wrap {
+          flex-shrink: 0;
+          width: 100%;
+          max-width: 340px;
+          margin: 0 auto;
+        }
+        @media (min-width: 900px) {
+          .services-photo-wrap { width: 340px; margin: 0; position: sticky; top: 100px; }
+        }
+        .services-photo {
+          width: 100%;
+          border-radius: 1rem;
+          box-shadow: 0 12px 40px rgba(58,74,40,0.2);
+          display: block;
+        }
+        .services-photo-caption {
+          text-align: center;
+          margin-top: 0.75rem;
+          font-size: 0.85rem;
+          color: #8B9B65;
+          font-style: italic;
+          font-family: 'Lora', serif;
+        }
+        .services-grid-wrap { flex: 1; min-width: 0; }
         .service-heading {
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.45rem; font-weight: 600;
           margin-bottom: 0.85rem; color: #8B9B65;
         }
 
+        /* PRICING */
+        .pricing-section { background-color: #ffffff; }
+
         /* PRODUCTS */
-        .products-section { background-color: #ffffff; }
+        .products-section { background-color: #f8f7f2; }
         .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
         @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
         .product-box {
@@ -297,7 +336,7 @@ export default function TriquetraKnotWebsite() {
         }
 
         /* TESTIMONIALS */
-        .testimonials-section { background-color: #f8f7f2; }
+        .testimonials-section { background-color: #ffffff; }
         .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
         .testimonial-text {
           font-style: italic; margin-bottom: 1rem;
@@ -309,7 +348,42 @@ export default function TriquetraKnotWebsite() {
         }
 
         /* CONTACT */
-        .contact-section { background-color: #ffffff; }
+        .contact-section { background-color: #f8f7f2; }
+        .contact-intro {
+          font-family: 'Lora', serif;
+          font-size: 1.1rem;
+          line-height: 1.85;
+          color: #333;
+          text-align: center;
+          margin-bottom: 1.75rem;
+        }
+        .contact-link {
+          color: #8B9B65;
+          font-weight: 600;
+          text-decoration: none;
+          border-bottom: 1px solid #e2d070;
+          transition: color 0.2s;
+        }
+        .contact-link:hover { color: #e2d070; }
+        .social-icons {
+          display: flex;
+          justify-content: center;
+          gap: 1.25rem;
+          margin-bottom: 2.25rem;
+        }
+        .social-icon {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background-color: #8B9B65;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 6px 18px rgba(58,74,40,0.25);
+          transition: transform 0.2s, background-color 0.2s;
+        }
+        .social-icon:hover { transform: translateY(-3px); background-color: #7a8a56; }
+        .social-icon svg { width: 26px; height: 26px; fill: #f0e06a; }
         .contact-form { display: flex; flex-direction: column; gap: 1.75rem; }
         .form-field { display: flex; flex-direction: column; }
         .form-label {
@@ -376,7 +450,7 @@ export default function TriquetraKnotWebsite() {
           <div className="nav-content">
             <span className="logo-text"></span>
             <div className="desktop-nav">
-              {['home','bio','services','products','testimonials','contact'].map(s => (
+              {['home','bio','services','pricing','products','testimonials','contact'].map(s => (
                 <button key={s} onClick={() => scrollToSection(s)} className="nav-link">
                   {s.charAt(0).toUpperCase() + s.slice(1)}
                 </button>
@@ -391,7 +465,7 @@ export default function TriquetraKnotWebsite() {
         </div>
         <div className="mobile-nav" style={{maxHeight: menuActive ? '400px' : '0'}}>
           <div className="mobile-nav-content">
-            {['home','bio','services','products','testimonials','contact'].map(s => (
+            {['home','bio','services','pricing','products','testimonials','contact'].map(s => (
               <button key={s} onClick={() => scrollToSection(s)} className="mobile-nav-link">
                 {s.charAt(0).toUpperCase() + s.slice(1)}
               </button>
@@ -439,18 +513,46 @@ export default function TriquetraKnotWebsite() {
         <div className="container-wide">
           <h2 className="section-heading">Services & Coaching</h2>
           <div className="gold-divider"></div>
-          <div className="services-grid">
+          <div className="services-layout">
+            <div className="services-photo-wrap">
+              <img src={`${import.meta.env.BASE_URL}Hannah Selects -21.jpg`} alt="Hannah" className="services-photo" />
+              <p className="services-photo-caption">Personalized guidance for mind, body & spirit</p>
+            </div>
+            <div className="services-grid-wrap">
+              <div className="services-grid">
+                {[
+                  ['Mindfulness Coaching', 'Learn to cultivate presence, reduce stress, and develop a deeper awareness of your thoughts and emotions through guided mindfulness practices.'],
+                  ['Holistic Wellness', 'Integrate mind, body, and spirit through personalized wellness plans that honor your unique journey and support lasting transformation.'],
+                  ['Life Transitions', 'Navigate major life changes with grace and clarity through compassionate guidance and practical tools for personal growth.'],
+                  ['Spiritual Growth', 'Deepen your spiritual practice and connection to your inner wisdom through contemplative exercises and sacred teachings.'],
+                  ['Energy Healing', 'Experience gentle yet powerful energy work designed to restore balance, release blockages, and promote deep healing.'],
+                  ['Goal Manifestation', 'Align your intentions with inspired action to bring your dreams into reality through proven manifestation techniques.'],
+                ].map(([title, desc]) => (
+                  <div key={title} className="content-box">
+                    <h3 className="service-heading">{title}</h3>
+                    <p className="text-content">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="pricing-section">
+        <div className="container-wide">
+          <h2 className="section-heading">Pricing</h2>
+          <div className="gold-divider"></div>
+          <div className="products-grid">
             {[
-              ['Mindfulness Coaching', 'Learn to cultivate presence, reduce stress, and develop a deeper awareness of your thoughts and emotions through guided mindfulness practices.'],
-              ['Holistic Wellness', 'Integrate mind, body, and spirit through personalized wellness plans that honor your unique journey and support lasting transformation.'],
-              ['Life Transitions', 'Navigate major life changes with grace and clarity through compassionate guidance and practical tools for personal growth.'],
-              ['Spiritual Growth', 'Deepen your spiritual practice and connection to your inner wisdom through contemplative exercises and sacred teachings.'],
-              ['Energy Healing', 'Experience gentle yet powerful energy work designed to restore balance, release blockages, and promote deep healing.'],
-              ['Goal Manifestation', 'Align your intentions with inspired action to bring your dreams into reality through proven manifestation techniques.'],
-            ].map(([title, desc]) => (
-              <div key={title} className="content-box">
+              ['💫', 'Single Sessions', 'Your first session runs 1.5 hours at £120.00. One-off sessions afterwards are £75.00 per hour.', '£120.00 first session'],
+              ['🌿', '6-Session Package', 'A minimum of six sessions is recommended to really see a lasting difference. Book a block and receive 10% off the standard rate.', '£405.00 for 6 sessions'],
+            ].map(([icon, title, desc, price]) => (
+              <div key={title} className="content-box product-box">
+                <div className="product-icon">{icon}</div>
                 <h3 className="service-heading">{title}</h3>
                 <p className="text-content">{desc}</p>
+                <p className="product-price">{price}</p>
               </div>
             ))}
           </div>
@@ -484,9 +586,8 @@ export default function TriquetraKnotWebsite() {
           <div className="gold-divider"></div>
           <div className="testimonials-grid">
             {[
-              ['"Working with The Triquetra Knot has been truly life-changing. I have found a sense of peace and purpose I never thought possible."', '— Sarah M., Artist & Entrepreneur'],
-              ['"The coaching sessions provided exactly what I needed during a difficult transition. The combination of practical tools and spiritual guidance helped me navigate with grace."', '— Michael T., Healthcare Professional'],
-              ['"I have tried many wellness programs, but this is the first that truly addressed mind, body, and soul together."', '— Jennifer L., Corporate Executive'],
+              ['"After experiencing a sudden and devastating loss, I began working with Hannah during one of the most difficult times in my life. She gave me a safe, supportive space to process my grief without letting me become consumed by my thoughts. While I still carry the sadness of that loss, I’m no longer stuck in the negative emotions every day. Hannah’s ability to truly listen, understand what I was experiencing, and help me make sense of my thoughts has been invaluable. She provided practical tools to help me navigate my mind and cope with my grief. I’m incredibly grateful for her compassion, guidance, and support."'],
+              // ['"Test', '-- Brad Kahl']
             ].map(([quote, author]) => (
               <div key={author} className="content-box">
                 <p className="testimonial-text">{quote}</p>
@@ -502,6 +603,24 @@ export default function TriquetraKnotWebsite() {
           <h2 className="section-heading">Get In Touch</h2>
           <div className="gold-divider"></div>
           <div className="content-box">
+            <p className="contact-intro">
+              Interested in scheduling a session with me? Please reach out to me at{' '}
+              <a href="tel:+447702607032" className="contact-link">+44 7702 60 70 32</a> for international or{' '}
+              <a href="tel:07702607032" className="contact-link">07702607032</a> for UK clients, or email me at{' '}
+              <a href="mailto:welcome@salubriousvitality.co.uk" className="contact-link">welcome@salubriousvitality.co.uk</a>.
+            </p>
+            <div className="social-icons">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg>
+              </a>
+            </div>
             <form onSubmit={handleFormSubmit} className="contact-form">
               <div className="form-field">
                 <label htmlFor="email" className="form-label">Email Address</label>
