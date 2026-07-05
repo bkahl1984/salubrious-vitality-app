@@ -463,10 +463,9 @@ export default function TriquetraKnotWebsite() {
           <div className="gold-divider"></div>
           <div className="products-grid">
             {[
-              ['📖', 'Guided Meditation Series', 'A collection of 12 professionally recorded guided meditations for various intentions and healing modalities.', '$29.99'],
-              ['📝', 'Transformation Journal', 'A beautifully designed journal with prompts and exercises to support your personal growth journey.', '$24.99'],
-              ['🎓', 'Online Course Bundle', 'Access our comprehensive online courses covering mindfulness, energy work, and holistic wellness practices.', '$149.99'],
-              ['🕯️', 'Sacred Space Kit', 'Everything you need to create a sacred space for meditation and spiritual practice in your home.', '$39.99'],
+              ['📖', 'Peter Crone', 'A collection of 12 professionally recorded guided meditations for various intentions and healing modalities.', '$29.99'],
+              ['📝', 'Black Stuff', 'A beautifully designed journal with prompts and exercises to support your personal growth journey.', '$24.99'],
+              ['🎓', 'Water Filterman', 'Access our comprehensive online courses covering mindfulness, energy work, and holistic wellness practices.', '$149.99'],
             ].map(([icon, title, desc, price]) => (
               <div key={title} className="content-box product-box">
                 <div className="product-icon">{icon}</div>
