@@ -334,6 +334,16 @@ export default function TriquetraKnotWebsite() {
           color: #8B9B65; font-size: 1.5rem; font-weight: 600;
           margin-top: 1rem; font-family: 'Cormorant Garamond', serif;
         }
+        .product-link {
+          margin-top: auto;
+          padding-top: 1.25rem;
+          color: #8B9B65;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.25rem; font-weight: 600;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .product-link:hover { color: #e2d070; }
 
         /* TESTIMONIALS */
         .testimonials-section { background-color: #ffffff; }
@@ -541,12 +551,12 @@ export default function TriquetraKnotWebsite() {
 
       <section id="pricing" className="pricing-section">
         <div className="container-wide">
-          <h2 className="section-heading">Pricing</h2>
+          <h2 className="section-heading">Packaging</h2>
           <div className="gold-divider"></div>
           <div className="products-grid">
             {[
               ['💫', 'Single Sessions', 'Your first session runs 1.5 hours at £120.00. One-off sessions afterwards are £75.00 per hour.', '£120.00 first session'],
-              ['🌿', '6-Session Package', 'A minimum of six sessions is recommended to really see a lasting difference. Book a block and receive 10% off the standard rate.', '£405.00 for 6 sessions'],
+              ['🌿', '6-Session Package', 'A minimum of six sessions is recommended to really see a lasting difference. Book a block and receive 10% off the standard rate.', '£445.00 for 6 sessions'],
             ].map(([icon, title, desc, price]) => (
               <div key={title} className="content-box product-box">
                 <div className="product-icon">{icon}</div>
@@ -565,15 +575,19 @@ export default function TriquetraKnotWebsite() {
           <div className="gold-divider"></div>
           <div className="products-grid">
             {[
-              ['📖', 'Peter Crone', 'Peter Crone has created a promo code for you with 10% off with DAMEHANNAH10'],
+              ['📖', 'Peter Crone', 'Peter Crone has created a promo code for you with 10% off with DAMEHANNAH10', 'https://www.petercrone.com/mastermind#pricing'],
               ['📝', 'Black Stuff', 'Black Stuff, its a gut biome support that is designed to elevate health and wellness through next-level cellular support and detoxification, the power of polyphenol-fulvic compounds for deep detox and nutrient absorption. A key part of our mission to elevate health and wellness through next-level cellular support and detoxification.', 'https://www.black-stuff.com/hannahpope'],
               ['🎓', 'Water Filterman', 'I use this for filtering our water, we use a whole house system & have a reverse osmosis system fitted under the sink. Clients of mine can get a 15% discount when quoting my name verbally when placing an order: Hannah Pope', 'https://www.waterfilterman.co.uk/'],
-            ].map(([icon, title, desc, price]) => (
+            ].map(([icon, title, desc, url]) => (
               <div key={title} className="content-box product-box">
                 <div className="product-icon">{icon}</div>
                 <h3 className="service-heading">{title}</h3>
                 <p className="text-content">{desc}</p>
-                <p className="product-price">{price}</p>
+                {url && (
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="product-link">
+                    Visit Website →
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -587,10 +601,13 @@ export default function TriquetraKnotWebsite() {
           <div className="testimonials-grid">
             {[
               ['"After experiencing a sudden and devastating loss, I began working with Hannah during one of the most difficult times in my life. She gave me a safe, supportive space to process my grief without letting me become consumed by my thoughts. While I still carry the sadness of that loss, I’m no longer stuck in the negative emotions every day. Hannah’s ability to truly listen, understand what I was experiencing, and help me make sense of my thoughts has been invaluable. She provided practical tools to help me navigate my mind and cope with my grief. I’m incredibly grateful for her compassion, guidance, and support."'],
+              ['"Working with Hannah at Salubrious Vitality completely changed my life. Before meeting her, I spent three incredibly painful months suffering from severe, constant digestive issues that made daily life miserable. Hannah stepped in with so much compassion and expertise. By recommending specific dietary adjustments and teaching me how to eat for better gut health, she completely resolved the physical pain I was struggling with.\n\nBeyond the physical transformation, Hannah is deeply knowledgeable about mental health. She provided me with the tools to cope with the daily stress of chronic discomfort and really put things into perspective. She is a truly unique thinker and a compassionate problem solver. The guidance she shares doesn\'t just help me manage my current situation—it gives me a roadmap for moving forward and living a healthier, balanced life. I am incredibly blessed to have found her, and I cannot recommend Salubrious Vitality enough."']
               // ['"Test', '-- Brad Kahl']
             ].map(([quote, author]) => (
-              <div key={author} className="content-box">
-                <p className="testimonial-text">{quote}</p>
+              <div key={quote} className="content-box">
+                {quote.split('\n\n').map((para, i) => (
+                  <p key={i} className="testimonial-text">{para}</p>
+                ))}
                 <p className="testimonial-author">{author}</p>
               </div>
             ))}
@@ -620,8 +637,8 @@ export default function TriquetraKnotWebsite() {
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                 </svg>
               </a>
-            </div>
-            <form onSubmit={handleFormSubmit} className="contact-form">
+            </div>         
+            {/* <form onSubmit={handleFormSubmit} className="contact-form">
               <div className="form-field">
                 <label htmlFor="email" className="form-label">Email Address</label>
                 <input type="email" id="email" name="email" required className="form-input" placeholder="your@email.com" />
@@ -631,7 +648,7 @@ export default function TriquetraKnotWebsite() {
                 <textarea id="message" name="message" required rows="6" className="form-textarea" placeholder="Your message here..."></textarea>
               </div>
               <button type="submit" className="submit-btn">Send Message</button>
-            </form>
+            </form> */}
           </div>
         </div>
       </section>
