@@ -312,8 +312,8 @@ export default function TriquetraKnotWebsite() {
           margin-bottom: 0.85rem; color: #8B9B65;
         }
 
-        /* PRICING */
-        .pricing-section { background-color: #ffffff; }
+        /* PACKAGING */
+        .packaging-section { background-color: #ffffff; }
 
         /* PRODUCTS */
         .products-section { background-color: #f8f7f2; }
@@ -460,7 +460,7 @@ export default function TriquetraKnotWebsite() {
           <div className="nav-content">
             <span className="logo-text"></span>
             <div className="desktop-nav">
-              {['home','bio','services','pricing','products','testimonials','contact'].map(s => (
+              {['home','bio','services','packaging','products','testimonials','contact'].map(s => (
                 <button key={s} onClick={() => scrollToSection(s)} className="nav-link">
                   {s.charAt(0).toUpperCase() + s.slice(1)}
                 </button>
@@ -475,7 +475,7 @@ export default function TriquetraKnotWebsite() {
         </div>
         <div className="mobile-nav" style={{maxHeight: menuActive ? '400px' : '0'}}>
           <div className="mobile-nav-content">
-            {['home','bio','services','pricing','products','testimonials','contact'].map(s => (
+            {['home','bio','services','packaging','products','testimonials','contact'].map(s => (
               <button key={s} onClick={() => scrollToSection(s)} className="mobile-nav-link">
                 {s.charAt(0).toUpperCase() + s.slice(1)}
               </button>
@@ -549,7 +549,7 @@ export default function TriquetraKnotWebsite() {
         </div>
       </section>
 
-      <section id="pricing" className="pricing-section">
+      <section id="packaging" className="packaging-section">
         <div className="container-wide">
           <h2 className="section-heading">Packaging</h2>
           <div className="gold-divider"></div>
