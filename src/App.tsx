@@ -711,7 +711,7 @@ export default function TriquetraKnotWebsite() {
 
       <footer className="site-footer">
         <div className="footer-wrapper">
-          <p className="footer-text">© 2026 The Triquetra Knot. All rights reserved. Unity of Mind, Body and Soul.</p>
+          <p className="footer-text">© 2026 Salubrious Vitality. All rights reserved. Unity of Mind, Body and Soul.</p>
         </div>
       </footer>
     </div>
