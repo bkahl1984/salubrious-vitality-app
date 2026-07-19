@@ -18,7 +18,7 @@ This is a single-page marketing/landing site for a wellness & coaching business 
 The entire site lives in **`src/App.tsx`** — a single default-exported component (`TriquetraKnotWebsite`). There is no routing, no component library, and no state management beyond a single `useState` for the mobile menu. When making changes, expect to edit this one file.
 
 Key structural facts about `App.tsx`:
-- **All styling is inline.** A large `<style>{`...`}</style>` block at the top of the JSX (~lines 22–400) holds the entire stylesheet, including the Google Fonts `@import`, the responsive `@media` breakpoints, and the brand color palette (olive green `#8B9B65`, gold `#f0e06a`, cream `#f8f7f2`). `src/App.css` and `src/index.css` exist but the meaningful styling is in this inline block.
+- **All styling is inline.** A large `<style>{`...`}</style>` block at the top of the JSX (~lines 22–400) holds the entire stylesheet, including the Google Fonts `@import`, the responsive `@media` breakpoints, and the brand color palette (dark forest-olive green `#2E3A1C`, gold `#E9C35B` / deep gold `#CDA53A`, cream `#f8f7f2`). `src/App.css` and `src/index.css` exist but the meaningful styling is in this inline block.
 - **Page sections** are plain `<section>` elements with `id` attributes: `home` (hero), `bio`, `services`, `products`, `testimonials`, `contact`. Navigation works via `scrollToSection(id)`, which calls `scrollIntoView` for smooth scrolling.
 - The contact form (`handleFormSubmit`) is a stub — it only `alert()`s and resets; there is no backend.
 
