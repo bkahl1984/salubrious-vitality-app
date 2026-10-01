@@ -191,7 +191,7 @@ export default function TriquetraKnotWebsite() {
         }
         .logo-img {
           position: relative; z-index: 1;
-          top: 15px;
+          top: 20px;
           width: 100%; height: auto; display: block;
         }
 
