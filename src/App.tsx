@@ -110,6 +110,8 @@ export default function TriquetraKnotWebsite() {
 
         #home {
           padding: 0;
+          min-height: auto;
+          display: block;
         }
 
         section {
@@ -147,58 +149,49 @@ export default function TriquetraKnotWebsite() {
           position: relative;
           left: 0;
           right: 0;
-        }
-        .hero-container {
-          text-align: center; max-width: 860px;
-          position: relative; z-index: 1;
-          padding: 0.75rem 1rem 1.25rem;
-        }
-        .hero-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 2.8rem; font-weight: 700;
-          margin-bottom: 2rem;
-          color: #E9C35B;
-          letter-spacing: 1px;
-        }
-        @media (min-width: 640px) { .hero-title { font-size: 3.8rem; } }
-        @media (min-width: 768px) { .hero-title { font-size: 4.5rem; } }
-
-        .logo-box {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: min(90vw, 380px);
-          aspect-ratio: 1 / 1;
-          margin: 0 auto 1.5rem;
-          box-sizing: border-box;
-          border-radius: 50%;
+          padding: 0;
           overflow: hidden;
-          border: 6px solid #CDA53A;
-          background: #1B2410;
-          box-shadow: 0 10px 30px rgba(46,58,28,0.4), 0 0 0 2px rgba(205,165,58,0.35);
+          background: #2c3819; /* matches the logo backdrop; fallback behind .hero-bg */
+          border-bottom: 4px solid #CDA53A;
+          box-shadow: inset 0 -1px 0 rgba(233,195,91,0.6), 0 6px 24px rgba(31,41,19,0.35);
         }
-        @media (min-width: 480px) { .logo-box { width: min(90vw, 460px); } }
-        .logo-bg {
+        /* Full-bleed green backdrop (same texture as the logo art) stretched
+           across the whole hero so the centered logo photo blends into it. */
+        .hero-bg {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
           object-fit: cover;
-          transform: scale(1.5);
-          filter: blur(26px);
           z-index: 0;
+          pointer-events: none;
+          user-select: none;
+        }
+        /* One shared vignette over both layers so the logo's baked-in dark
+           corners blend into matching darkened backdrop corners instead of
+           reading as a vignetted rectangle. Transparent core is wide enough
+           to never touch the gold mark or wordmark. */
+        .hero-vignette {
+          position: absolute; inset: 0;
+          z-index: 2;
+          pointer-events: none;
+          background: radial-gradient(115% 130% at 50% 40%, transparent 60%, rgba(18,26,11,0.55) 100%);
+        }
+        .hero-container {
+          width: 100%;
+          max-width: 100%;
+          text-align: center;
+          position: relative; z-index: 1;
+          padding: 0 0 1.5rem;
+          margin: 0;
+        }
+        .logo-box {
+          position: relative;
+          width: min(100vw, 1180px);
+          margin: 0 auto;
+          padding-top: 56px; /* sit just below the fixed navbar */
         }
         .logo-img {
           position: relative; z-index: 1;
           width: 100%; height: auto; display: block;
-          -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 91%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 91%, transparent 100%);
-        }
-        .logo-vignette {
-          position: absolute; inset: 0;
-          border-radius: 50%;
-          box-shadow: inset 0 0 50px 8px rgba(10,16,8,0.4);
-          z-index: 2;
-          pointer-events: none;
         }
 
         /* BIO */
@@ -533,14 +526,13 @@ export default function TriquetraKnotWebsite() {
       </nav>
 
       <section id="home" className="hero-section">
+        <img src={`${import.meta.env.BASE_URL}08_WordMark_GreenBG.png`} aria-hidden="true" className="hero-bg" />
         <div className="hero-container">
-          <h1 className="hero-title"></h1>
           <div className="logo-box">
-            <img src={`${import.meta.env.BASE_URL}Salubrious-Vitality-Green-Logo.jpeg`} aria-hidden="true" className="logo-bg" />
-            <img src={`${import.meta.env.BASE_URL}Salubrious-Vitality-Green-Logo.jpeg`} alt="Salubrious Vitality" className="logo-img" />
-            <span className="logo-vignette" aria-hidden="true"></span>
+            <img src={`${import.meta.env.BASE_URL}02_WordMark_Transparent_Web.png`} alt="Salubrious Vitality" className="logo-img" />
           </div>
         </div>
+        <span className="hero-vignette" aria-hidden="true"></span>
       </section>
 
       <section id="bio" className="bio-section">
