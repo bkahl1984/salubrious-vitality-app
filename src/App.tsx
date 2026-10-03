@@ -17,10 +17,18 @@ export default function TriquetraKnotWebsite() {
     e.target.reset();
   };
 
+  // Bold + color the discount amount and promo code within a description.
+  const highlightPromo = (text) =>
+    text.split(/(10%|DAMEHANNAH10)/g).map((part, i) =>
+      part === '10%' || part === 'DAMEHANNAH10'
+        ? <strong key={i} className="promo-highlight">{part}</strong>
+        : part
+    );
+
   return (
     <div style={{width:"100vw",maxWidth:"100vw",overflowX:"hidden",margin:0,padding:0,boxSizing:"border-box"}}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;500;600&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         button:focus, button:focus-visible, button:active { outline: none !important; box-shadow: none !important; border: none !important; }
         html { scroll-behavior: smooth; width: 100%; max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
@@ -372,6 +380,31 @@ export default function TriquetraKnotWebsite() {
           .product-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
         }
         .product-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .product-icon-img {
+          display: block;
+          width: auto;
+          height: 64px;
+          max-width: 100%;
+          margin: 0 auto;
+          object-fit: contain;
+        }
+        @media (max-width: 639px) { .product-icon-img { height: 48px; } }
+        /* Peter Crone text wordmark — serif (Cardo) in uppercase with wide
+           tracking to match the brand's logo styling. */
+        .product-icon-text {
+          display: block;
+          font-family: 'Cardo', 'Cormorant Garamond', serif;
+          font-weight: 400;
+          font-size: 2.1rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #2e2823;
+          line-height: 1.15;
+          padding-left: 0.18em; /* offset trailing tracking to keep it centered */
+          margin: 0 auto;
+        }
+        @media (max-width: 639px) { .product-icon-text { font-size: 1.6rem; } }
+        .promo-highlight { font-weight: 700; color: #2e2823; }
         .product-price {
           color: #2E3A1C; font-size: 1.5rem; font-weight: 600;
           margin-top: 1rem; font-family: 'Cormorant Garamond', serif;
@@ -624,14 +657,22 @@ export default function TriquetraKnotWebsite() {
           <div className="gold-divider"></div>
           <div className="products-grid">
             {[
-              ['📖', 'Peter Crone', 'Peter Crone has created a promo code for you with 10% off with DAMEHANNAH10', 'https://www.petercrone.com/mastermind#pricing'],
-              ['📝', 'Black Stuff', 'Black Stuff, its a gut biome support that is designed to elevate health and wellness through next-level cellular support and detoxification, the power of polyphenol-fulvic compounds for deep detox and nutrient absorption. A key part of our mission to elevate health and wellness through next-level cellular support and detoxification.', 'https://www.black-stuff.com/hannahpope'],
-              ['🎓', 'Water Filterman', 'I use this for filtering our water, we use a whole house system & have a reverse osmosis system fitted under the sink. Clients of mine can get a 15% discount when quoting my name verbally when placing an order: Hannah Pope', 'https://www.waterfilterman.co.uk/'],
+              ['black-coffee-logo.avif', 'Black Stuff', 'Black Stuff, its a gut biome support that is designed to elevate health and wellness through next-level cellular support and detoxification, the power of polyphenol-fulvic compounds for deep detox and nutrient absorption. A key part of our mission to elevate health and wellness through next-level cellular support and detoxification.', 'https://www.black-stuff.com/hannahpope'],
+              ['water-filter-man-logo.jpg', 'Water Filterman', 'I use this for filtering our water, we use a whole house system & have a reverse osmosis system fitted under the sink. Clients of mine can get a 15% discount when quoting my name verbally when placing an order: Hannah Pope', 'https://www.waterfilterman.co.uk/'],
+              ['text:PETER CRONE', 'Peter Crone', 'Peter Crone has created a promo code for you with 10% off with DAMEHANNAH10', 'https://www.petercrone.com/mastermind#pricing'],
             ].map(([icon, title, desc, url]) => (
               <div key={title} className="content-box product-box">
-                <div className="product-icon">{icon}</div>
-                <h3 className="service-heading">{title}</h3>
-                <p className="text-content">{desc}</p>
+                <div className="product-icon">
+                  {icon.startsWith('text:')
+                    ? <span className="product-icon-text">{icon.slice(5)}</span>
+                    : icon.includes('.')
+                      ? <img src={`${import.meta.env.BASE_URL}${icon}`} alt={title} className="product-icon-img" />
+                      : icon}
+                </div>
+                {!icon.startsWith('text:') && !icon.includes('.') && (
+                  <h3 className="service-heading">{title}</h3>
+                )}
+                <p className="text-content">{highlightPromo(desc)}</p>
                 {url && (
                   <a href={url} target="_blank" rel="noopener noreferrer" className="product-link">
                     Visit Website →
