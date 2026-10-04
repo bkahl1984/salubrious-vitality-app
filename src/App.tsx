@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function TriquetraKnotWebsite() {
   const [menuActive, setMenuActive] = useState(false);
+  const [heroPassed, setHeroPassed] = useState(false);
+
+  // On mobile, reveal the emblem in the navbar once the hero banner scrolls out
+  // of view, and hide it again when the user scrolls back up to the top.
+  useEffect(() => {
+    const hero = document.getElementById('home');
+    if (!hero) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroPassed(!entry.isIntersecting),
+      { threshold: 0, rootMargin: '-64px 0px 0px 0px' }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -60,6 +74,26 @@ export default function TriquetraKnotWebsite() {
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.4rem; font-weight: 700;
           color: #E9C35B;
+        }
+        /* Mobile-only: emblem that transitions into the navbar's top-left as the
+           user scrolls past the hero, and back out when they return to the top. */
+        .nav-logo {
+          height: 46px;
+          width: auto;
+          display: block;
+          cursor: pointer;
+          opacity: 0;
+          transform: translateX(-14px) scale(0.8);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+          pointer-events: none;
+        }
+        .nav-logo.is-visible {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          pointer-events: auto;
+        }
+        @media (min-width: 768px) {
+          .nav-logo { display: none; }
         }
         .desktop-nav { display: none; gap: 1.75rem; align-items: center; }
         .nav-link {
@@ -533,7 +567,12 @@ export default function TriquetraKnotWebsite() {
       <nav className="navbar">
         <div className="nav-wrapper">
           <div className="nav-content">
-            <span className="logo-text"></span>
+            <img
+              src={`${import.meta.env.BASE_URL}01_Logo_Transparent_Web.png`}
+              alt="Salubrious Vitality"
+              className={`nav-logo ${heroPassed ? 'is-visible' : ''}`}
+              onClick={() => scrollToSection('home')}
+            />
             <div className="desktop-nav">
               {['home','bio','services','packaging','products','testimonials','contact'].map(s => (
                 <button key={s} onClick={() => scrollToSection(s)} className="nav-link">
